@@ -6,4 +6,8 @@
   - Finish design document
   - Finish table design
   - Finish log in page
-  - Start user homepage
+  - Design general UI templates 
+    - Login page
+    - User 
+    - Admin
+    - Reviewer
