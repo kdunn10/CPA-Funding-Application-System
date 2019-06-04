@@ -11,3 +11,9 @@
     - User 
     - Admin
     - Reviewer
+  # June 4, 2019
+  What we will do?
+  - Revise Design Document
+  - Layout for application flow
+  - Rough draft of user UI
+  - Translate to PHPMyAdmin
