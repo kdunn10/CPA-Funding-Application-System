@@ -15,5 +15,8 @@
   What we will do?
   - Revise Design Document
   - Layout for application flow
-  - Rough draft of user UI
-  - Translate to PHPMyAdmin
+  - Finish up user flow
+  - mock up of application and admin
+  - Create tables in PHPMyAdmin
+  - Implement api for user flow
+  - mock up api for admin and applications
