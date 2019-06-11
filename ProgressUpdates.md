@@ -21,7 +21,7 @@
 
   # June 11, 2019
   What we will do?
-  - Create admin flow
-  - Start application flow
-  - Implement api for admin flow
-  - Mock up api for application 
+  - Finish application flow
+  - Create Eligibility Form & CP Form mock up
+  - Create user/admin homepage mock up
+  
