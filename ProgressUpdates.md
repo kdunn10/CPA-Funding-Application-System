@@ -14,9 +14,14 @@
   # June 4, 2019
   What we will do?
   - Revise Design Document
-  - Layout for application flow
   - Finish up user flow
-  - mock up of application and admin
+  - mock up of admin
   - Create tables in PHPMyAdmin
   - Implement api for user flow
-  - mock up api for admin and applications
+
+  # June 11, 2019
+  What we will do?
+  - Create admin flow
+  - Start application flow
+  - Implement api for admin flow
+  - Mock up api for application 
