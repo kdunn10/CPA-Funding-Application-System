@@ -12,6 +12,7 @@ $qry = mysqli_query($connect, $selview);
 $selassoc = mysqli_fetch_assoc($qry);
 
 $id = $selassoc['id'];
+$staus = $selassoc['status'];
 $email = $selassoc['email'];
 $projectName = $selassoc['projectName'];
 $shortProjectDescription = $selassoc['shortProjectDescription'];
@@ -22,7 +23,20 @@ $applicantOrg = $selassoc['applicantOrg'];
 $contactPersonTitle = $selassoc['contactPersonTitle'];
 $phoneNumber = $selassoc['phoneNumber'];
 
-
+if(isset($_POST['approveBtn'])) {
+	$upStatus = $_POST['upStatus'];
+	$seleditt = "UPDATE `eform` SET `status`='Approved' Where `id`='$id'";
+	$qry = mysqli_query($connect, $seleditt);
+	if($qry) {
+		header("location: admin.php");
+	}
+} elseif(isset($_POST['rejectBtn'])) {
+	$seleditt = "UPDATE `eform` SET `status`='Rejected' WHERE `id`='$id'";
+	$qry = mysqli_query($connect, $seleditt);
+	if($qry) {
+		header("location: admin.php");
+	}
+}
 
 ?>
 
