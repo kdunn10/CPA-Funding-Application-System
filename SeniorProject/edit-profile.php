@@ -27,10 +27,12 @@ include_once 'partials/parseProfile.php';
 		<?php else: ?>
 
 			<form method="post" action="" enctype="multipart/form-data">
+				
 				<div class="form-group">
 					<label for="emailField">Email</label>
-					<input type="text" name="email" class="form-control" id="emailField" value="<?php if(isset($email)) echo $email; ?>">
+					<input type="text" name="email" class="form-control" id="emailField" value="<?php if(isset($email)) echo $email; ?> "disabled>
 				</div>
+				
 
 				<div class="form-group">
 					<label for="usernameField">Username</label>

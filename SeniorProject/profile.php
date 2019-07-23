@@ -6,13 +6,13 @@ include_once 'partials/parseProfile.php';
 
 ?>
 
-<div class="container">
+<div class="container" style=" background-color:rgba(255, 255, 255, 0.7); padding-bottom: 20px; border-radius: 20px;">
 
 	<div>
 
 		<a href="index.php" style="float: right; margin-top: 15px;">Back</a>
 
-		<h1 style="margin-top: 50px;">Profile</h1><hr>
+		<h1 style="margin-top: 60px;">Profile</h1><hr>
 		
 		<?php if(!isset($_SESSION['username'])): ?>
 
