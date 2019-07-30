@@ -1,9 +1,11 @@
 <?php
 
 $page_title = "Admin Authentication - Homepage";
-include_once 'partials/headers.php';
+include_once 'partials/adminHeaders.php';
 include_once 'partials/parseProfile.php';
 include ("resource/formDB.php");
+//include("approve.php");
+//include("reject.php");
 
 ?>
 
@@ -20,13 +22,15 @@ include ("resource/formDB.php");
   		border: 1px solid #ddd;
   		padding: 8px;
   		text-align: left;
+  		color: white;
+  		
   		;
 	}
 
-	#eligibilityTable tr:nth-child(even){background-color: #f2f2f2;}
-	#eligibilityTable tr:nth-child(odd){background-color: #fff;}
+	#eligibilityTable tr:nth-child(even){background-color: #5D6D7E;}
+	#eligibilityTable tr:nth-child(odd){background-color: #85929E;}
 
-	#eligibilityTable tr:hover {background-color: #ddd;}
+	
 
 	#eligibilityTable th {
  		padding-top: 12px;
@@ -51,60 +55,79 @@ include ("resource/formDB.php");
   	
 	}
 
-	#cpaTable td {
-		height: 72px;
-	}
 
-	#cpaTable tr:nth-child(even){background-color: #f2f2f2;}
 
-	#cpaTable tr:hover {background-color: #ddd;}
-
-	#cpaTable th {
- 		padding-top: 12px;
-  		padding-bottom: 12px;
-  		text-align: left;
-  		background-color: #071822;
-  		color: white;
-	}
-
-	.newEligibilityBtn{
-		width: 200px;
+	.rejectBtn{
+		width: 100px;
 		padding: 5px; 
 		cursor: pointer; 
-		font-size: 20px; 
-		background-color:rgba(251, 77, 66, 0.6); 
+		font-size: 15px; 
+		background-color:rgba(231, 76, 60, 0.8); 
 		color: #071822; font-weight: bold; 
 		border: 2px solid #071822; 
-		border-radius: 10px; 
-		float: right; 
+		border-radius: 5px;  
 		text-align: center; 
+		float: center; 
 		 
 		margin-top: 5px;
 
 	}
 
-	.newEligibilityBtn:hover{background-color:rgba(251, 77, 66, 0.4);}
+	.rejectBtn:hover{background-color:#F5B7B1;}
 
-	.newCpaBtn{
-		width: 150px;
+	.approveBtn{
+		width: 100px;
 		padding: 5px; 
 		cursor: pointer; 
 		font-size: 15px; 
-		background-color:rgba(251, 77, 66, 0.6); 
+		background-color:rgba(46, 204, 113, 0.8); 
 		color: #071822; font-weight: bold; 
 		border: 2px solid #071822; 
-		border-radius: 10px;  
+		border-radius: 5px;  
 		text-align: center; 
-		margin-bottom: 15px; 
-		margin-top: 5px;
-		float: right;
-
+		float: center;
 
 
 
 	}
 
-	.newCpaBtn:hover{background-color:rgba(251, 77, 66, 0.4);}
+	.approveBtn:hover{background-color:#ABEBC6;}
+
+	.viewFormBtn{
+		width: 100px;
+		padding: 5px; 
+		cursor: pointer; 
+		font-size: 15px; 
+		background-color:rgba(127, 179, 213, 0.9); 
+		color: #071822; font-weight: bold; 
+		border: 2px solid #071822; 
+		border-radius: 5px;  
+		text-align: center; 
+		float: center;
+
+
+
+	}
+
+	.viewFormBtn:hover{background-color:#D4E6F1;}
+
+	.viewPdfBtn{
+		width: 100px;
+		padding: 5px; 
+		cursor: pointer; 
+		font-size: 15px; 
+		background-color:rgba(178, 186, 187, 0.8); 
+		color: #071822; font-weight: bold; 
+		border: 2px solid #071822; 
+		border-radius: 5px;  
+		text-align: center; 
+		float: center;
+
+		margin-top: 5px;
+
+	}
+
+	.viewPdfBtn:hover{background-color:#E5E8E8;}
 
 	.eligibilityTable{
 		float: left;
@@ -112,13 +135,26 @@ include ("resource/formDB.php");
 		
 	}
 
-	.cpaTable{
-		float: right;
-		width: 100%;
-		
-		
+	.logoutBtn
+	{
+		width: 100px;
+		padding: 5px; 
+		cursor: pointer; 
+		font-size: 15px; 
+		background-color: #CB4335; 
+		color: #071822; font-weight: bold; 
+		border: 2px solid #071822; 
+		border-radius: 10px;  
+		text-align: center; 
+		float: center;
+		color: white;
+
 	}
 
+	.logoutBtn:hover{background-color:#F1948A; color: black;}
+
+	
+	
 </style>
 
 <div class="container">
@@ -138,23 +174,21 @@ include ("resource/formDB.php");
 
 		<div>
 			
-			<a href="logout.php" style="float: right; margin-top: 20px;">Logout</a>
+			<a href="logout.php" style="float: right; margin-top: 20px;"><input type='submit' class='logoutBtn' value='Logout'></a>
 
-			<h1 class="lead" style="font-size: 40px; text-align: left;">Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?></h1><hr>
+			<h1 class="lead" style="font-size: 40px; text-align: left;">Welcome Admin</h1><hr>
 
 		</div>
 
 		<div style="margin-top: 5px; float: center;">
 
-			<h5 style="font-weight: bold;">Welcome to the Admin Panel</h5>
+			<h5 style="font-weight: bold;">Administration Panel</h5>
 			
 		
 		</div>
 
 		<div>
 			<h3 id="yourform" style="text-align: left; margin-top: 40px; width: 250px; background-color: #071822; color: #fff; padding: 10px; border-radius: 5px 0px 25px 5px;">Submitted Forms</h3>
-
-	
 		</div>
 
 		<div class="eligibilityTable">
@@ -165,30 +199,40 @@ include ("resource/formDB.php");
 					<th>ID</th>
 					<th style="margin-right: 50px;">Project Name</th>
 					<th style="margin-right: 20%;">Email</th>
-					<th>Eligibility Form</th> 
-					<th>Approve/Reject</th>
+					<th style="width: 135px;">Eligibility Form</th> 
+					<th style="width: 135px;">Eligibility Status</th>
+					<th style="width: 125px;">Approve/Reject</th>
 					<th>CPA Form</th>
-					<th>Approve/Reject</th>
+					<th>CPA Status</th>
+					<th style="width: 125px;">Approve/Reject</th>
 				</tr>
 
 				<tr>
 					
 					<?php
 
-					$sel = "SELECT `id`, `projectName`, `email`, `status` FROM `eform`";
+					$sel = "SELECT `id`, `projectName`, `email`, `eStatus`, `cStatus` FROM `eform`";
 
 					$qrydisplay = mysqli_query($connect, $sel);
 
-					while($row = mysqli_fetch_array($qrydisplay))
-					{
+
+					while($row = mysqli_fetch_array($qrydisplay)) {
 						$id = $row['id'];
 						$projectName = $row['projectName'];
 						$email = $row['email'];
-						$status = $row['status'];
+						$eStatus = $row['eStatus'];
+						$cStatus = $row['cStatus'];
 
-						
-						echo "<tr><td>".$id."</td><td>".$projectName."</td><td>".$email."</td><td><a href='adminView.php?adminView=$id'>View</a></td><td></td><td></td><td></td></tr>";
-
+						echo "<tr><td>".$id."</td>";
+						echo "<td>".$projectName."</td>";
+						echo "<td>".$email."</td>";
+						echo "<td><a href='adminView.php?adminView=$id'><input type='submit' class='viewFormBtn' value='View Form'></a><br><a href='formPDF.php?formPDF=$id'><input type='submit' class='viewPdfBtn' value='View PDF'></a></td>";
+						echo "<td>".$eStatus."</td>";
+						echo "<td><a href='approve.php?id=$id'><input type='submit' class='approveBtn' value='Approve'></a><br><a href='reject.php?id=$id'><input type='submit' class='rejectBtn' value='Reject'></a></td>";
+						echo "<td><a href='adminCpaView.php?adminCpaView=$id'><input type='submit' class='viewFormBtn' value='View Form'></a><br><a href='cpaformPDF.php?cpaformPDF=$id'><input type='submit' class='viewPdfBtn' value='View PDF'></a></td>";
+						echo "<td>".$cStatus."</td>";
+						echo "<td><a href='cApprove.php?id=$id'><input type='submit' class='approveBtn' value='Approve'></a><br><a href='cReject.php?id=$id'><input type='submit' class='rejectBtn' value='Reject'></a></td>";
+						echo "<input type='hidden' name='hidden' value=".$eStatus."/></tr>";
 					}
 
 					?>

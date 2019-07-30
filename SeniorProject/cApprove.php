@@ -5,7 +5,7 @@ include ("resource/formDB.php");
 
 if(isset($_GET['id'])) {
         $row = $_GET['id'];
-        $sql = "UPDATE `eform` SET `eStatus` = 'Approved' WHERE `id`='$row'";
+        $sql = "UPDATE `eform` SET `cStatus` = 'Approved' WHERE `id`='$row'";
         $result = mysqli_query($connect, $sql);
         mysqli_query($connect, $result);
         if($result == 1) {
@@ -13,7 +13,7 @@ if(isset($_GET['id'])) {
         }
 } else {
         $row = $_GET['id'];
-        $sql = "UPDATE `eform` SET `eStatus` = 'Not Submitted' WHERE `id` = '$row'";
+        $sql = "UPDATE `eform` SET `cStatus` = 'Not Submitted' WHERE `id` = '$row'";
         $result = mysqli_query($connect, $sql);
         mysqli_query($connect, $result);
         if($result == 1) {

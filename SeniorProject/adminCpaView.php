@@ -1,12 +1,10 @@
 <?php
-
-$page_title = "User Authentication - CPA Form Page";
-include_once 'partials/headers.php';
+$page_title = "User Authentication - Eligibility Form Page";
+include_once 'partials/adminHeaders.php';
 include_once 'partials/parseProfile.php';
 include ("resource/formDB.php");
 
-
-$getid = $_GET['cpaView'];
+$getid = $_GET['adminCpaView'];
 
 $selview = "SELECT * FROM `eform` WHERE `id` = '$getid'";
 $qry = mysqli_query($connect, $selview);
@@ -49,9 +47,7 @@ $cUploadIRS = $selassoc["cUploadIRS"];
 $cUploadProfit = $selassoc["cUploadProfit"];
 $cUploadBalance = $selassoc["cUploadBalance"];
 
-
-
-if(isset($_POST['submitCpaBtn']))
+if(isset($_POST['updateview']))
 {
 
 	$upcEmail = $_POST['upcEmail'];
@@ -136,11 +132,10 @@ if(isset($_POST['submitCpaBtn']))
 	$upcUploadBalance = rand(1000,10000)."-".$_FILES["upcUploadBalance"]["name"];
 	$tname10 = $_FILES["upcUploadBalance"]["tmp_name"];
 	$uploads_dir10 = 'uploads';
-	move_uploaded_file($tname10, $uploads_dir10.'/'.$upcUploadBalance);
-	
+	move_uploaded_file($tname10, $uploads_dir10.'/'.$upcUploadBalance);	
 
 
-	$selviewdata2 = "UPDATE `eform` SET `cEmail`='$upcEmail',
+	$selviewdata = "UPDATE `eform` SET `cEmail`='$upcEmail',
 	`cProjectName`='$upcProjectName',
 	`cProjectNeighborhood`='$upcProjectNeighborhood',
 	`cProjectZip`= '$upcProjectZip',
@@ -172,16 +167,30 @@ if(isset($_POST['submitCpaBtn']))
 	`cUploadProfit`='$upcUploadProfit',
 	`cUploadBalance`='$upcUploadBalance' WHERE `id` = '$upid'";
 
-	$qry = mysqli_query($connect, $selviewdata2);
+	$qry = mysqli_query($connect, $selviewdata);
 
 	if($qry)
 	{
-		header("location: index.php");
+		header("location: admin.php");
+	}
+}
+
+if(isset($_POST['approveBtn'])) {
+	$upStatus = $_POST['upStatus'];
+	$seleditt = "UPDATE `eform` SET `cStatus`='Approved' Where `id`='$id'";
+	$qry = mysqli_query($connect, $seleditt);
+	if($qry) {
+		header("location: admin.php");
+	}
+} elseif(isset($_POST['rejectBtn'])) {
+	$seleditt = "UPDATE `eform` SET `cStatus`='Rejected' WHERE `id`='$id'";
+	$qry = mysqli_query($connect, $seleditt);
+	if($qry) {
+		header("location: admin.php");
 	}
 }
 
 ?>
-
 
 <style type="text/css">
 	
@@ -198,7 +207,7 @@ if(isset($_POST['submitCpaBtn']))
 	
 	<div>
 
-		<a href="index.php" style="float: right; margin-top: 15px;">Back</a>
+		<a href="admin.php" style="float: right; margin-top: 15px;">Back</a>
 
 		<h2 style="margin-top: 60px; padding-top: 10px;">CPA Boston - Fall 2019 Application</h2><hr>
 
@@ -226,7 +235,7 @@ if(isset($_POST['submitCpaBtn']))
 
 			<div class="ediv">
 				<label for="shortProjectNeighborhoodField">Project Street Address & Neighborhood:<font color="red"> *</font></label>
-				<input type="text" name="upcProjectNeighborhood" class="form-control" id="shortProjectNeighborhoodField"  value="<?php echo $cProjectNeighborhood; ?>" readonly>
+				<input type="text" name="upcProjectNeighborhood" class="form-control" id="shortProjectNeighborhoodField"  value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 
@@ -234,25 +243,24 @@ if(isset($_POST['submitCpaBtn']))
 			
 			<div class="ediv">
 				<label for="projectZipField">Project Zip-Code:<font color="red"> *</font></label>
-				<input type="text" name="upcProjectZip" class="form-control" id="projectZipField"  value="<?php echo $cProjectZip; ?>" readonly>
+				<input type="text" name="upcProjectZip" class="form-control" id="projectZipField"  value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 			
 			<div class="ediv">
 				<label for="applicantOrgField">Applicant Organization:<font color="red"> *</font></label>
-				<input type="text" name="upcApplicantOrg" class="form-control" id="applicantOrgField"  value="<?php echo $cApplicantOrg; ?>" readonly>
+				<input type="text" name="upcApplicantOrg" class="form-control" id="applicantOrgField"  value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 			
 			<div class="ediv">
 				<label for="contactPersonTitleField">Contact Person & Title:<font color="red"> *</font></label>
-				<input type="text" name="upcontactPersonTitle" class="form-control" id="contactPersonTitleField"  value="<?php echo $cContactPersonTitle ?>" readonly>
+				<input type="text" name="upcontactPersonTitle" class="form-control" id="contactPersonTitleField"  value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 			
 			<div class="ediv">
 				<label for="phoneNumberField">Phone Number:<font color="red"> *</font></label>
-				<input type="text" name="upcPhoneNumber" class="form-control" id="phoneNumberField"  value="<?php echo $cPhoneNumber; ?>" readonly>
+				<input type="text" name="upcPhoneNumber" class="form-control" id="phoneNumberField"  value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
-		
 			
 			<div class="ediv">
 				<label>Category (Pick the one that best describes your project):<font color="red"> *</font></label><br/>
@@ -263,17 +271,17 @@ if(isset($_POST['submitCpaBtn']))
 			
 			<div class="ediv">
 				<label for="amountRequestedField">Amount Requested:<font color="red"> *</font></label>
-				<input type="text" name="upcAmountRequested" class="form-control" id="amountRequestedField" value="<?php echo $cAmountRequested; ?>" readonly>
+				<input type="text" name="upcAmountRequested" class="form-control" id="amountRequestedField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="totalProjectCostField">Total Project Cost:<font color="red"> *</font></label>
-				<input type="text" name="upcTotalProjectCost" class="form-control" id="totalProjectCostField" value="<?php echo $cTotalProjectCost; ?>" readonly>
+				<input type="text" name="upcTotalProjectCost" class="form-control" id="totalProjectCostField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="shortProject2Field">Short Project Description - For The CPA Webpages:<font color="red"> *</font></label>
-				<input type="text" name="upcShortProjectDescription2" class="form-control" id="shortProject2Field" value="<?php echo $cShortProjectDescription2; ?>" readonly>
+				<input type="text" name="upcShortProjectDescription2" class="form-control" id="shortProject2Field" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<h4 style="width: 300px; background-color: #071822; color: #fff; padding: 10px; border-radius: 0px 0px 25px 0px; margin-top: 25px; margin-bottom: 25px;">Questions</h4>
@@ -283,52 +291,52 @@ if(isset($_POST['submitCpaBtn']))
 
 			<div class="ediv">
 				<label for="projectSummaryField">1. Project Summary & Anticipated Outcome: Information about your organization is not needed here, just describe what you hope to do (e.g. build 10 units of affordable housing or repair roof) and why this project will make a difference - the outcome.<font color="red"> *</font></label>
-				<input type="text" name="upcProjectSummary" class="form-control" id="projectSummaryField" value="<?php echo $cProjectSummary; ?>" readonly>
+				<input type="text" name="upcProjectSummary" class="form-control" id="projectSummaryField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="needsAssessmentField">2. Needs Assessment: Why do you need the funds? How bad are the existing conditions? What are the neighborhood challenges you hope to address?<font color="red"> *</font></label>
-				<input type="text" name="upcNeedsAssessment" class="form-control" id="projectSummaryField" value="<?php echo $cNeedsAssessment; ?>" readonly>
+				<input type="text" name="upcNeedsAssessment" class="form-control" id="projectSummaryField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="projectTimelineField">3. Project Implementation / Timeline: Divide your project into three milestones that make sense to you. Attach anticipated completion dates for each stage and cost.<font color="red"> *</font></label>
-				<input type="text" name="upcProjectTimeline" class="form-control" id="projectTimelineField" value="<?php echo $cProjectTimeline; ?>" readonly>
+				<input type="text" name="upcProjectTimeline" class="form-control" id="projectTimelineField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="experienceCapacityField">4. Experience & Capacity: Convince us that you have the ability to carry out the steps and oversight needed to complete the project. How have you been a good steward or landlord? Have you done projects like this before? Share your history of caring for the resource.<font color="red"> *</font></label>
-				<input type="text" name="upcExperienceCapacity" class="form-control" id="experienceCapacityField" value="<?php echo $cExperienceCapacity; ?>" readonly>
+				<input type="text" name="upcExperienceCapacity" class="form-control" id="experienceCapacityField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="organizationalPlanField">5. Organizational Strategy & Plan: How does this project fit into your current programming or capital work and future plans?<font color="red"> *</font></label>
-				<input type="text" name="upcOrganizationalPlan" class="form-control" id="organizationalPlanField" value="<?php echo $cOrganizationalPlan; ?>" readonly>
+				<input type="text" name="upcOrganizationalPlan" class="form-control" id="organizationalPlanField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="publicBenefitField">6. Public Benefit: Who will the project serve?<font color="red"> *</font></label>
-				<input type="text" name="upcPublicBenefit" class="form-control" id="publicBenefitField" value="<?php echo $cPublicBenefit; ?>" readonly>
+				<input type="text" name="upcPublicBenefit" class="form-control" id="publicBenefitField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="communitySupportField">7. Community Support and Opposition: List the required community meetings you have had for the project and attendance. If community members have been opposed, let us know why - please be honest!<font color="red"> *</font></label>
-				<input type="text" name="upcCommunitySupport" class="form-control" id="communitySupportField" value="<?php echo $cCommunitySupport; ?>" readonly>
+				<input type="text" name="upcCommunitySupport" class="form-control" id="communitySupportField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="sustainabilityField">8. Sustainability & Maintenance: How will the site or building be maintained going forward? Share a detailed plan - who will be responsible?<font color="red"> *</font></label>
-				<input type="text" name="upcSustainability" class="form-control" id="sustainabilityField" value="<?php echo $cSustainability; ?>" readonly>
+				<input type="text" name="upcSustainability" class="form-control" id="sustainabilityField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="projectGoalsField">9. How does your project meet the goals outlined in the Community Preservation Plan and Boston 2030? If you are applying for historic preservation funds, share the project's significance and how it contributes to the character of your neighborhood.<font color="red"> *</font></label>
-				<input type="text" name="upcProjectGoals" class="form-control" id="projectGoalsField" value="<?php echo $cProjectGoals; ?>" readonly>
+				<input type="text" name="upcProjectGoals" class="form-control" id="projectGoalsField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 			<div class="ediv">
 				<label for="budgetExplanationField">10. Budget Explanation: feel free to share any unusual circumstances, budget details you'd like to explain, or information about additional fundraising.<font color="red"> *</font></label>
-				<input type="text" name="upcBudgetExplanation" class="form-control" id="budgetExplanationField" value="<?php echo $cBudgetExplanation; ?>" readonly>
+				<input type="text" name="upcBudgetExplanation" class="form-control" id="budgetExplanationField" value="<?php echo $cProjectName; ?>" readonly>
 			</div>
 
 
@@ -424,8 +432,6 @@ if(isset($_POST['submitCpaBtn']))
 			<p>- christine.poff@boston.gov / 617-635-0277</br>
 			- thadine.brown@boston.gov / 617-635-0545</br>
 			- allyson.quinn@boston.gov / 617-635-4637</p>
-
-			<input type="submit" name="submitCpaBtn" class="btn btn-primary" style="border-radius: 10px; padding-left: 35px; padding-right: 35px; margin-top: 25px; background-color: #071822; color: #fff; font-size: 20px;" value="Submit" onclick="errorFunction();">
 			
 
 		</form>
