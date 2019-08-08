@@ -7,11 +7,11 @@ This is a final project report for our CPA Funding Application System Website th
 
 ### Why?
 
-X
+This projects goal is to help improve the current City of Boston Community Preservation Act (CPA) funding application process for both applicants and the CPA team. We aimed to build an easy to use customized platform that is scalable and maintainable.
 
 ### How?
 
-X
+To build this project we used XAMPP to have a localhost and used phpmyadmin for the database to store the information. Using php, html, css, and javascript we created the scripts that were needed to create the website and connect them to the database. 
 
 ## Deliverables
 
