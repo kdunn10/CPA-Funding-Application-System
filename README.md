@@ -1,5 +1,8 @@
 # CPA-Funding-Application-System
-Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Developer, drphamwit - Developer
+## Team Members: 
+	1. Jimish Thakkar - Full-Stack Developer
+	2. Kathleen Dunn - Full-Stack Developer
+	3. drphamwit - Developer
 # Project Description
  ## What?
  	This project is to create a webpage for the City of Boston Community Preservation Act to make the already existing funding application system into its own webpage and improve on what already exists and add features that make it easier for both applicants and reviewers.
