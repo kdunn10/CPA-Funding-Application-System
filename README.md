@@ -4,18 +4,18 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
  ## What?
  	This project is to create a webpage for the City of Boston Community Preservation Act to make the already existing funding application system into its own webpage and improve on what already exists and add features that make it easier for both applicants and reviewers.
 ## What is Being Used?
-### Front End
+### Front End:
 	- HTML
 	- CSS
 	- JavaScript
-### Back End
+### Back End:
 	- MySQL
 	- PHP
-### Tools
+### Tools:
 	- Git/GitHub
 	- XAMPP
 	- Sublime 3
-## Deliverables
+## Deliverables:
 	1) CPA Funding Webpage
 	2) User Management
 		a) User Account Features
@@ -41,7 +41,7 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
 	4) Documentation and Testing
 ## Getting Started
 
-### Install
+### Install:
 	1. Go to https://www.sublimetext.com/3 to install Sublime Text 3
 		- If you want you can use any other text editor of your choice. Sublime, however is free.
 	2. Go to https://www.apachefriends.org/index.html to install XAMPP.
@@ -85,7 +85,8 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
 			reset_link	VARCHAR		2555
 			join_date	TIMESTAMP	
 			role		ENUM		'user', 'admin'
-			
+		
+		- Then click on Save
 	11. Create anoter Database
 		- In the Database field, type 'form'. And click Create.
 		- Once you created the form database, open it.
@@ -110,52 +111,70 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
 			fundingSources			VARCHAR		200
 			checkfundingRequest		VARCHAR		200
 			constructionDesign		VARCHAR		250
-			propertyOwner			VARCHAR		
-			uploadAgreement			VARCHAR
-			expectedStartDate		VARCHAR
-			expectedCompleteDate		VARCHAR
-			pickCategory			VARCHAR
-			yourProject			VARCHAR
-			intendedUsers			VARCHAR
-			generalPublic			VARCHAR
-			masterPlan			VARCHAR
-			maintenance			VARCHAR
-			historicLandscape		VARCHAR
-			publicArt			VARCHAR
-			cStatus				VARCHAR
-			cEmail				VARCHAR
-			cProjectName			VARCHAR
-			cProjectNeighborhood		VARCHAR
-			cProjectZip			VARCHAR
-			cApplicantOrg			VARCHAR
-			cContactPersonTitle		VARCHAR
-			cPhoneNumber			VARCHAR
-			cPickCategory			VARCHAR
-			cAmountRequested		VARCHAR
-			cTotalProjectCost		VARCHAR
-			cShortProjectDescription2	VARCHAR
-			cProjectSummary			VARCHAR
-			cNeedsAssessment		VARCHAR
-			cProjectTimeline		VARCHAR
-			cExperienceCapacity		VARCHAR
-			cOrganizationalPlan		VARCHAR
-			cPublicBenefit			VARCHAR
-			cCommunitySupport		VARCHAR
-			cSustainability			VARCHAR
-			cProjectGoals			VARCHAR
-			cBudgetExplanation		VARCHAR
-			cUploadPropertyControl		VARCHAR
-			cUploadCouncilSupport		VARCHAR
-			cUploadCommunitySupport		VARCHAR
-			cUploadAppearance		VARCHAR
-			cUploadDesign			VARCHAR
-			cUploadResult			VARCHAR
-			cUploadBudget			VARCHAR
-			cUploadIRS			VARCHAR
-			cUploadProfit			VARCHAR
-			cUploadBalance			VARCHAR
-			
+			propertyOwner			VARCHAR		50	
+			uploadAgreement			VARCHAR		50
+			expectedStartDate		VARCHAR		10
+			expectedCompleteDate		VARCHAR		10
+			pickCategory			VARCHAR		50
+			yourProject			VARCHAR		200
+			intendedUsers			VARCHAR		250
+			generalPublic			VARCHAR		250
+			masterPlan			VARCHAR		250
+			maintenance			VARCHAR		50
+			historicLandscape		VARCHAR		50
+			publicArt			VARCHAR		50
+			cStatus				VARCHAR		50
+			cEmail				VARCHAR		200
+			cProjectName			VARCHAR		50
+			cProjectNeighborhood		VARCHAR		100
+			cProjectZip			VARCHAR		5
+			cApplicantOrg			VARCHAR		50
+			cContactPersonTitle		VARCHAR		50
+			cPhoneNumber			VARCHAR		10
+			cPickCategory			VARCHAR		100
+			cAmountRequested		VARCHAR		10
+			cTotalProjectCost		VARCHAR		10
+			cShortProjectDescription2	VARCHAR		1000
+			cProjectSummary			VARCHAR		250
+			cNeedsAssessment		VARCHAR		200
+			cProjectTimeline		VARCHAR		200
+			cExperienceCapacity		VARCHAR		200
+			cOrganizationalPlan		VARCHAR		200
+			cPublicBenefit			VARCHAR		200
+			cCommunitySupport		VARCHAR		200
+			cSustainability			VARCHAR		200
+			cProjectGoals			VARCHAR		200
+			cBudgetExplanation		VARCHAR		200
+			cUploadPropertyControl		VARCHAR		200
+			cUploadCouncilSupport		VARCHAR		200
+			cUploadCommunitySupport		VARCHAR		200
+			cUploadAppearance		VARCHAR		200
+			cUploadDesign			VARCHAR		200
+			cUploadResult			VARCHAR		200
+			cUploadBudget			VARCHAR		200
+			cUploadIRS			VARCHAR		200
+			cUploadProfit			VARCHAR		200
+			cUploadBalance			VARCHAR		200
 		
+		- Then click on Save
+### Run:
+	- In order to run the application, Open up any Internet Browser.
+	- In the URL, type 'localhost'
+	- Click on the link Senior Project (Or whatever you named the folder in htdocs)
+	- You should be able to successfully run the program. If you get errors, then please check the Database to see if the fields 		names match your Database.
+## Featurs:
+	Users Page Features
+		1. User Login / User Registration
+		2. Create New Eligibility Form
+		3. View Submitted Eligibility Form
+		4. Once Admin Approves Eligibilit Form, Create CPA Form
+		5. View Submitted CPA Form
+		6. View the status for both Eligibility Form and CPA Form
+	Admin Page Features
+		1. View all submitted forms
+		2. Approve or Reject Eligibility Forms
+		3. Approve or Reject CPA Forms
+		4. View all forms in a PDF Format in order to print.
 		
-### Demonstration Video
+## Demo Video
 	- https://www.youtube.com/watch?v=Pr-JMqTkdEM
