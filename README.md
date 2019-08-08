@@ -10,6 +10,7 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
 	- JavaScript
 ### Back End
 	- MySQL
+	- PHP
 ### Tools
 	- Git/GitHub
 ## Deliverables
