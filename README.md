@@ -13,6 +13,8 @@ Team Members: Jimmy Thakkar - Frontend Developer, Kathleen Dunn - Backend Develo
 	- PHP
 ### Tools
 	- Git/GitHub
+	- XAMPP
+	- Sublime 3
 ## Deliverables
 	1) CPA Funding Webpage
 	2) User Management
